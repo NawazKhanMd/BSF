@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MyButton from "../../components/Button";
 import Spacer from "../../components/Spacer";
 import { removeTask } from "../../store/actions";
+import I18n from '../../i18n';
 
 const MyTasks = () => {
   const current = useSelector((state) => state.current);
@@ -47,7 +48,7 @@ const MyTasks = () => {
               onPress={() => handleDisclaimer(index)}
             />
             {showDisclaimer === index && (
-              <Text style={styles.disclaimer}>Hold to delete</Text>
+              <Text style={styles.disclaimer}>{I18n.t('deleteDiscalimer')}</Text>
             )}
             <Spacer />
           </>
