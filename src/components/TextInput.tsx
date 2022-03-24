@@ -50,9 +50,7 @@ const MyTextInput = ({
               <View style={styles.errorContainer}>
                 {errors[name] && (
                   <Text>
-                    {errors[name]?.type === "required"
-                      ? `${label} is required.`
-                      : `${errors[name]?.message}`}
+                    {`${errors[name]?.message}`}
                   </Text>
                 )}
               </View>

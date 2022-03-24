@@ -8,20 +8,24 @@ export type TextFieldProps = {
   placeHolder?: string;
 };
 export type ButtonProps = {
-    title?: string;
-    onPress?: any;
-    onLongPress?: any;
-    width?: string;
-    height?: number;
-    bgColor?: string;
-    txtColor?: string;
-    txtSize?: number;
-    txtWeight?: string;
-  }
+  title?: string;
+  onPress?: any;
+  onLongPress?: any;
+  width?: string;
+  height?: number;
+  bgColor?: string;
+  txtColor?: string;
+  txtSize?: number;
+  txtWeight?: string;
+};
 
 export type ActionType = string;
 
 export type Action = {
   type: ActionType;
   payload?: any;
+};
+export type ListViewProps = {
+  current: Array<string>;
+  handleRemove: any;
 };

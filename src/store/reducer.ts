@@ -1,11 +1,11 @@
 import { ActionType } from "../utils/types";
 import { TASK_ADDED, TASK_REMOVE, TASK_REMOVED } from "./actions";
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   current: [],
 };
 
-const friendsReducer = (
+export const friendsReducer = (
   state: any = INITIAL_STATE,
   { type, payload }: { type: ActionType; payload: any }
 ) => {
@@ -22,5 +22,3 @@ const friendsReducer = (
       return state;
   }
 };
-
-export default friendsReducer;

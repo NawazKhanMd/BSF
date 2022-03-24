@@ -8,60 +8,20 @@
  * @format
  */
 
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MyButton from "../../components/Button";
-import Spacer from "../../components/Spacer";
 import { removeTask } from "../../store/actions";
-import I18n from '../../i18n';
+import ListView from "./ListView";
 
 const MyTasks = () => {
   const current = useSelector((state) => state.current);
-  const [showDisclaimer, setDisclaimer] = useState(-1);
   const dispatch = useDispatch();
-
-  const handleDisclaimer = (index: number) => {
-    setDisclaimer(index);
-    const timer = setTimeout(() => {
-      setDisclaimer(-1);
-      clearTimeout(timer);
-    }, 2000);
-  };
 
   const handleRemove = (index: number) => {
     dispatch(removeTask(index));
   };
 
-  return (
-    <View style={styles.listView}>
-      <FlatList
-        data={current}
-        renderItem={({ item, index }) => (
-          <>
-            <MyButton
-              title={item}
-              height={50}
-              bgColor={"#6454B6"}
-              width={"100%"}
-              onLongPress={() => handleRemove(index)}
-              onPress={() => handleDisclaimer(index)}
-            />
-            {showDisclaimer === index && (
-              <Text style={styles.disclaimer}>{I18n.t('deleteDiscalimer')}</Text>
-            )}
-            <Spacer />
-          </>
-        )}
-      />
-      <Spacer />
-    </View>
-  );
+  return <ListView current={current} handleRemove={handleRemove} />;
 };
-
-const styles = StyleSheet.create({
-  listView: { flex: 1 },
-  disclaimer: { textAlign: "center" },
-});
 
 export default MyTasks;
