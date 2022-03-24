@@ -8,40 +8,36 @@
  * @format
  */
 
-import React from 'react';
-import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
-const MyButton = (props: {
-  title?: string;
-  onPress?: any;
-  width?: string;
-  height?: number;
-  bgColor?: string;
-  txtColor?: string;
-  txtSize?: number;
-  txtWeight?: string;
-}) => {
+import React from "react";
+import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import { ButtonProps } from "../utils/types";
+const MyButton = (props: ButtonProps) => {
   const {
-    title = 'r',
+    title = "r",
     onPress = () => {},
-    width = '80%',
+    onLongPress = () => {},
+    width = "80%",
     height = 60,
-    bgColor = '#3AB091',
-    txtColor = '#fff',
+    bgColor = "#3AB091",
+    txtColor = "#fff",
     txtSize = 17,
-    txtWeight = 'bold',
+    txtWeight = "bold",
   } = props;
   return (
     <TouchableOpacity
       onPress={onPress}
+      onLongPress={onLongPress}
       style={{
         width: width,
         height: height,
         backgroundColor: bgColor,
         ...styles.mainContainer,
-      }}>
+      }}
+    >
       <View>
         <Text
-          style={{color: txtColor, fontSize: txtSize, fontWeight: txtWeight}}>
+          style={{ color: txtColor, fontSize: txtSize, fontWeight: txtWeight }}
+        >
           {title}
         </Text>
       </View>
@@ -52,8 +48,8 @@ const MyButton = (props: {
 const styles = StyleSheet.create({
   mainContainer: {
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

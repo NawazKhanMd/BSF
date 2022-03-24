@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import Spacer from "./Spacer";
 import { Controller } from "react-hook-form";
@@ -61,7 +61,7 @@ const MyTextInput = ({
         )}
         name={name}
       />
-      <Spacer height={40} />
+      <Spacer height={25}/>
     </View>
   );
 };

@@ -8,14 +8,36 @@
  * @format
  */
 
-import React from "react";
-import { Text, View, ImageBackground, StyleSheet, Image } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { Text, View, ImageBackground, StyleSheet, Image, Keyboard } from "react-native";
+import { useSelector } from "react-redux";
 import Spacer from "../../components/Spacer";
 import MyForm from "../MyForm";
 import MyTasks from "../MyTasks";
 const ToDo = () => {
-  // const counter = useSelector((state) => state.current)
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const onKeyboardShow = (event) =>
+    setKeyboardOffset(event.endCoordinates.height);
+  const onKeyboardHide = () => setKeyboardOffset(0);
+  const keyboardDidShowListener = useRef();
+  const keyboardDidHideListener = useRef();
 
+  useEffect(() => {
+    keyboardDidShowListener.current = Keyboard.addListener(
+      "keyboardWillShow",
+      onKeyboardShow
+    );
+    keyboardDidHideListener.current = Keyboard.addListener(
+      "keyboardWillHide",
+      onKeyboardHide
+    );
+
+    return () => {
+      keyboardDidShowListener.current.remove();
+      keyboardDidHideListener.current.remove();
+    };
+  }, []);
+  // const counter = useSelector((state) => state.current)
   const Banner = () => (
     <View style={styles.logoContainer}>
       <Image
@@ -33,7 +55,7 @@ const ToDo = () => {
     >
       <Banner />
       <MyTasks />
-      <MyForm />
+      <MyForm keyboardOffset={keyboardOffset}/>
     </ImageBackground>
   );
 };

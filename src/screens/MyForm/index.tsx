@@ -18,8 +18,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { useForm } from "react-hook-form";
-const MyForm = () => {
-  const counter = useSelector((state) => state.current);
+import { addTask } from "../../store/actions";
+const MyForm = (props: { keyboardOffset?: number }) => {
+  const { keyboardOffset } = props;
   const dispatch = useDispatch();
 
   const schema = yup.object({
@@ -40,13 +41,13 @@ const MyForm = () => {
 
   const onSubmit = (formData: { task: string }) => {
     const { task } = formData;
-    alert(task);
-    // setValue("task", "");
-    // dispatch()
+    setValue("task", "");
+    dispatch(addTask(task));
   };
+  const containerStyle = { paddingBottom: keyboardOffset };
 
   return (
-    <View>
+    <View style={containerStyle}>
       <MyTextInput
         placeHolder={"Task Example: Pick up Groceries"}
         name={"task"}

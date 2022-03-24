@@ -7,6 +7,17 @@ export type TextFieldProps = {
   type?: string;
   placeHolder?: string;
 };
+export type ButtonProps = {
+    title?: string;
+    onPress?: any;
+    onLongPress?: any;
+    width?: string;
+    height?: number;
+    bgColor?: string;
+    txtColor?: string;
+    txtSize?: number;
+    txtWeight?: string;
+  }
 
 export type ActionType = string;
 
